@@ -1,6 +1,10 @@
 import java.io.File
-
 fun main() {
+    val menu = Menu()
+    val userInput = UserInput()
+    val archive = Archives()
+
+
     val archivesDirectory = File("archives")
     if (!archivesDirectory.exists()) {
         archivesDirectory.mkdirs()
@@ -10,23 +14,16 @@ fun main() {
 
     var exit = false
     while (!exit) {
-        printMainMenu()
-        val choice = UserChoice(1, 4)
+        menu.printMenu()
+        val choice = userInput.userChoice(1, 4)
 
         when (choice) {
-            1 -> createArchive()
-            2 -> selectArchive()
+            1 -> archive.createArchive()
+            2 -> archive.selectArchive()
             3 -> {
                 println("До свидания!")
                 exit = true
             }
         }
     }
-}
-
-fun printMainMenu() {
-    println("Главное меню:")
-    println("1. Создать архив")
-    println("2. Выбрать архив")
-    println("3. Выход из приложения")
 }
